@@ -48,6 +48,7 @@ def receive_packet(sock):
 
     data = b""
     while True:
+        print('receive_packet')
         try:
             return decode_packet(data)[0]
         except IncompletePacket as exc:
@@ -83,6 +84,7 @@ def command(sock, text):
     send_packet(sock, Packet(1, 0, b""))
     response = b""
     while True:
+        print('command')
         packet = receive_packet(sock)
         if packet.ident != 0:
             break
